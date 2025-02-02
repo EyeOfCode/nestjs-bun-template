@@ -21,7 +21,9 @@ export class JwtUserStrategy extends PassportStrategy(Strategy, 'jwt-user') {
 
   async validate(payload: any): Promise<any> {
     try {
-      return {};
+      // check if token is valid and return user object
+      const user = { ...payload };
+      return { ...user };
     } catch (err) {
       return null;
     }

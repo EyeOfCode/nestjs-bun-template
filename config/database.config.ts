@@ -50,6 +50,11 @@ export default registerAs('db', async (): Promise<any> => {
     database: value.DB_NAME,
     entities: [__dirname + '/../**/*.entity.{js,ts}'],
     synchronize: false,
+    ssl:
+      process.env.NODE_ENV === 'production'
+        ? { rejectUnauthorized: false }
+        : false,
+    logging: process.env.NODE_ENV === 'development',
     extra: {
       charset: 'utf8mb4_unicode_ci',
     },
